@@ -1,0 +1,52 @@
+<app-header></app-header>
+<div class="title">
+    <table style="min-width: 100%;">
+     <tr style="min-width: 100%;">
+        <td align="left" style="min-width: 70%;">
+          <h3>User List</h3>
+        </td>
+        <td align="right" style="min-width: 20%;">
+            <button type="button" class="btn btn-primary square" (click)="addItem()">
+              <span class="fa fa-plus"></span>
+            </button>
+        </td>
+      </tr>
+    </table>
+</div>
+<hr>
+<div style="margin:0px;padding: 0px 10px;">
+    <ngx-datatable 
+    class="bootstrap"
+    [rows]="rows"
+    [columns]="columns"
+    [columnMode]="'standard'"
+    [headerHeight]="40"
+    [footerHeight]="40"
+    [limit]="10"
+    [rowHeight]="40"
+    [reorderable]="reorderable"
+    [selected]="selected"
+    [selectionType]="'single'"
+    (select)='onSelect($event)'>
+     <!-- [cssClasses]="iconsCss" Custom icon -->
+      <ngx-datatable-column name="No"
+      [width]= "50"
+      [minWidth]= "50"
+      [maxWidth]= "50"
+      [canAutoResize]= "false">
+          <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+              {{rowIndex + 1}}
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column style="white-space: normal;"
+      *ngFor="let col of columns"
+      [name]="col.name"
+      [width]="col.width"
+      [canAutoResize]="col.canAutoResize"
+      [maxWidth]= "col.maxWidth"
+      [minWidth]="col.minWidth">
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>
+<hr>
+<app-footer></app-footer>

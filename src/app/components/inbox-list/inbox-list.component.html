@@ -1,0 +1,82 @@
+<app-header></app-header>
+<div class="title">
+    <table width="100%">
+      <tr>
+        <td width="80%" align="left">
+          <h3>Inbox List</h3>
+        </td>
+        <td width="20%" align="right">
+
+        </td>
+      </tr>
+    </table>
+</div>
+<hr>
+<div style="margin:0px;padding: 0px 10px;">
+    <ngx-datatable
+    class="bootstrap"
+    [rows]="rows"
+    [columns]="columns"
+    [columnMode]="'standard'"
+    [headerHeight]="40"
+    [footerHeight]="40"
+    [limit]="10"
+    [rowHeight]="40"
+    [reorderable]="reorderable"
+    [selected]="selected"
+    [selectionType]="'single'"
+    (select)='onSelect($event)'>
+     <!-- [cssClasses]="iconsCss" Custom icon -->
+      <ngx-datatable-column name="No"
+      [width]= "50"
+      [minWidth]= "50"
+      [maxWidth]= "50"
+      [canAutoResize]= "false">
+          <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+              {{rowIndex + 1}}
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="ID"
+      prop= "leave_header.wf_instance_name"
+      [width]= "180"
+      [minWidth]= "180"
+      [maxWidth]= "200"
+      [canAutoResize]= "false">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value}}
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Date"
+      prop= "leave_header.created"
+      [width]= "200"
+      [minWidth]= "200"
+      [maxWidth]= "300"
+      [canAutoResize]= "false">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value | date:'MM/dd/yyyy'}}
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Name"
+      prop= "requester_user.name"
+      [width]= "400"
+      [minWidth]= "300"
+      [maxWidth]= "500"
+      [canAutoResize]= "true">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value}}
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Status"
+      prop= "status"
+      [width]= "1000"
+      [minWidth]= "1000"
+      [maxWidth]= "1000"
+      [canAutoResize]= "true">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{inboxStatus[value]}}
+          </ng-template>
+      </ngx-datatable-column>
+  </ngx-datatable>
+</div>
+<hr>
+<app-footer></app-footer>

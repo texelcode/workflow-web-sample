@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="title">
+    <table width="100%">
+      <tr>
+        <td width="80%" align="left">
+          <h3>User Detail</h3>
+        </td>
+        <td width="20%" align="right">
+
+        </td>
+      </tr>
+    </table>
+</div>
+<hr><br>
+<div style="padding: 10px;">
+  <table width="100%">
+    <tr>
+      <td width="20%"><label>ID</label></td>
+      <td width="5%"><label>:</label></td>
+      <td width="75%"><label>{{user.id}}</label></td>
+    </tr>
+    <tr>
+      <td><label>Name</label></td>
+      <td><label>:</label></td>
+      <td><label>{{user.name}}</label></td>
+    </tr>
+    <tr>
+      <td><label>Email</label></td>
+      <td><label>:</label></td>
+      <td><label>{{user.email}}</label></td>
+    </tr>
+  </table>
+</div>
+<hr>
+    <div style="padding: 0px 10px;">
+      <button type="button" class="btn btn-primary square" style="width: 140px;" (click)="onBack()">Back</button>
+    </div>
+<hr>
+<app-footer></app-footer>

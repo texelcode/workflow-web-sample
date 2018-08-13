@@ -1,0 +1,23 @@
+<div class="card card-container fixed-top">
+  <hr>
+  <h1>Host IP Address</h1>
+  <hr>
+  <form (ngSubmit)="test()" novalidate>
+     <div class="bottop">
+       <input type="text" class="form-control" id="ipaddress" placeholder="IP Address" [(ngModel)]="ipaddress" name="ipaddress" required>
+     </div>
+     <div class="bottop">
+        <tr>
+          <td style="width: 20%">
+              <button type="submit" class="btn btn-primary" style="width: 120px">Connect</button>
+          </td>
+          <td style="width: 60%">
+
+          </td>
+          <td style="width: 20%">
+              <button type="button" class="btn btn-warning btn-block" style="width: 120px" (click)="onCancel()">Cancel</button>
+          </td>
+        </tr>
+      </div>
+  </form>
+</div>

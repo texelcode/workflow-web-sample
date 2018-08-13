@@ -1,0 +1,72 @@
+<app-header></app-header>
+<div class="title">
+    <table width="100%">
+      <tr>
+        <td width="80%" align="left">
+          <h3>Request Detail</h3>
+        </td>
+        <td width="20%" align="right">
+
+        </td>
+      </tr>
+    </table>
+</div>
+<hr><br>
+<div style="padding: 10px;">
+    <div>
+        <table width="100%">
+        <tr>
+            <td width="20%"><label>ID</label></td>
+            <td width="5%"><label>:</label></td>
+            <td width="75%"><label>{{id}}</label></td>
+          </tr>
+          <tr>
+            <td><label>Name</label></td>
+            <td><label>:</label></td>
+            <td><label>{{request.wf_instance_name}}</label></td>
+          </tr>
+          <tr>
+            <td><label>Requested</label></td>
+            <td><label>:</label></td>
+            <td><label>{{request.created | date:'MM/dd/yyyy'}}</label></td>
+          </tr>
+          <tr>
+              <td><label>Reason</label></td>
+              <td><label>:</label></td>
+              <td><label>{{request.reason.name}}</label></td>
+          </tr>
+          <tr>
+              <td><label>Note</label></td>
+              <td><label>:</label></td>
+              <td><label>{{request.note}}</label></td>
+          </tr>
+          <tr>
+              <td><label>Leave Days</label></td>
+              <td><label>:</label></td>
+              <td><label>{{request.leave_days}}</label></td>
+          </tr>
+          <tr>
+              <td><label>Leave Start</label></td>
+              <td><label>:</label></td>
+              <td><label>{{min | date:'MM/dd/yyyy'}}</label></td>
+          </tr>
+          <tr>
+              <td><label>Leave End</label></td>
+              <td><label>:</label></td>
+              <td><label>{{max | date:'MM/dd/yyyy'}}</label></td>
+          </tr>
+          <tr>
+              <td><label>Status</label></td>
+              <td><label>:</label></td>
+              <td><label>{{approvalStatus[request.status]}}</label></td>
+          </tr>
+        </table>
+    </div>
+    
+    <hr>
+    <div class="row" style="padding: 0px 10px;">
+      <button type="button" class="btn btn-primary square" style="width: 140px;" (click)="onBack()">Back</button>
+    </div>
+  </div>
+  <hr>
+<app-footer></app-footer>

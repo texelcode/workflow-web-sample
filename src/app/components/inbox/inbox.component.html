@@ -1,0 +1,79 @@
+<app-header></app-header>
+<div class="title">
+    <table width="100%">
+      <tr>
+        <td width="80%" align="left">
+          <h3>Inbox Detail</h3>
+        </td>
+        <td width="20%" align="right">
+            <button type="button" class="btn btn-warning square" (click)="onCancel()">
+                <span class="fa fa-times"></span>
+            </button>
+        </td>
+      </tr>
+    </table>
+</div>
+<hr><br>
+<div style="padding: 10px;">
+  <div>
+      <table width="100%">
+      <tr>
+          <td width="30%"><label>ID</label></td>
+          <td width="5%"><label>:</label></td>
+          <td width="65%"><label>{{id}}</label></td>
+        </tr>
+        <tr>
+          <td><label>Name</label></td>
+          <td><label>:</label></td>
+          <td><label>{{inbox.leave_header.wf_instance_name}}</label></td>
+        </tr>
+        <tr>
+          <td><label>Requested</label></td>
+          <td><label>:</label></td>
+          <td><label>{{inbox.leave_header.created | date:'MM/dd/yyyy'}}</label></td>
+        </tr>
+        <tr>
+            <td><label>Requester</label></td>
+            <td><label>:</label></td>
+            <td><label>{{inbox.requester_user.name}}</label></td>
+        </tr>
+        <tr>
+            <td><label>Reason</label></td>
+            <td><label>:</label></td>
+            <td><label>{{inbox.leave_header.reason.name}}</label></td>
+        </tr>
+        <tr>
+            <td><label>Note</label></td>
+            <td><label>:</label></td>
+            <td><label>{{inbox.leave_header.note}}</label></td>
+        </tr>
+        <tr>
+            <td><label>Leave Days</label></td>
+            <td><label>:</label></td>
+            <td><label>{{inbox.leave_header.leave_days}}</label></td>
+        </tr>
+        <tr>
+            <td><label>Leave Start</label></td>
+            <td><label>:</label></td>
+            <td><label>{{min | date:'MM/dd/yyyy'}}</label></td>
+        </tr>
+        <tr>
+            <td><label>Leave End</label></td>
+            <td><label>:</label></td>
+            <td><label>{{max | date:'MM/dd/yyyy'}}</label></td>
+        </tr>
+        <tr>
+            <td><label>Status</label></td>
+            <td><label>:</label></td>
+            <td><label>{{inboxStatus[inbox.status]}}</label></td>
+        </tr>
+      </table>
+  </div>
+  <hr>
+  <div class="row" style="padding: 0px 10px;">
+    <button type="button" class="btn btn-primary square" style="width: 140px;" (click)="setApproval(true)">Approve</button>
+    <button type="button" class="btn btn-warning square" style="margin-left: 20px;width: 140px;" (click)="setApproval(false)">Decline</button>
+  </div>
+</div>
+<hr>
+<app-footer></app-footer>

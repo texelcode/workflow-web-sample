@@ -1,0 +1,34 @@
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="btn-group dropleft" dropdown placement="bottom left">
+        <button id="button-container" dropdownToggle type="button" class="navbar-toggler square"
+                aria-controls="dropdown-container"  style="padding: 2px;"><span class="navbar-toggler-icon" ></span>
+        </button>
+        <ul id="dropdown-container" *dropdownMenu class="dropdown-menu dropdown-menu-left square" role="menu" aria-labelledby="button-container">
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/home']">Home</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/inbox']">Inbox</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/approval']">Request</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/user']">User</a></li>
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem">
+              <button type="button" class="btn btn-warning square" (click)="onLogout()"
+              style="width: 100%;">Logout</button>
+            </li>
+        </ul>
+    </div>
+    <div style="padding: 0px 10px;">
+      <a class="navbar-brand" href="#">Approval Sample Application</a>
+    </div>
+    <div class="navbar-expand mr-auto one">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" [class.active]="router.url==='/home'" [routerLink]="['/home']">Home</a>
+        <a class="nav-item nav-link" [class.active]="router.url==='/inbox'" [routerLink]="['/inbox']">Inbox</a>
+        <a class="nav-item nav-link" [class.active]="router.url==='/approval'" [routerLink]="['/approval']" (click)="goRequest()">Request</a>
+        <a class="nav-item nav-link" [class.active]="router.url==='/user'" [routerLink]="['/user']">User</a>
+      </div>
+    </div>
+    <div class="navbar-expand ml-auto navbar-nav one">
+      <button type="button" class="btn btn-warning btn-block one square" (click)="onLogout()"
+      style="width: 120px;margin-right:-5px;">Logout</button>
+    </div>
+
+  </nav>

@@ -1,1 +1,70 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~font-awesome/css/font-awesome.css";
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+.card-container.card {
+  max-width: 375px;
+  padding: 40px 40px;
+  }
+.card {
+  background-color: #F7F7F7;
+  padding: 20px 25px 30px;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+.bottop {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+body { padding-top: 60px; }
+.scroll {
+  height: 420px;
+  overflow-y: auto;
+}
+.square{
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+}
+.title{
+  display: block;
+  width:100%;
+  margin: 0px;
+  padding: 0px 10px;
+  position: fixed;
+  background: #AAA;
+}
+ul li:hover {
+  background: #AAA;
+}
+ul li:hover ul {display: block;}
+.show-more-container {
+  overflow: hidden;
+}
+
+.show-more-collapse, .show-more-expand {
+  text-align: center;
+  display: none;
+}
+
+.show-more-expanded > .show-more-collapse {
+  display: inherit;
+}
+
+.show-more-collapsed > .show-more-expand {
+  display: inherit;
+}
+.ngx-datatable .datatable-footer .page-count{
+  display: none !important;
+}
+@media only screen and (max-width: 576px) {
+.one{
+    display: none;
+    }
+}
