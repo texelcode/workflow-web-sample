@@ -23,6 +23,22 @@
   margin-top: 10px;
 }
 body { padding-top: 60px; }
+.divTable {
+  display: block;
+  table-layout: auto;
+  border-collapse: collapse;
+}
+.divRow {
+  display: table-row;
+}
+.divBody {
+  display: table-row-group;
+}
+.divCell, .divHead {
+  display: table-cell;
+  white-space: wrap;
+}
+td > div { overflow-y:auto;overflow-x:hidden;}
 .scroll {
   height: 420px;
   overflow-y: auto;

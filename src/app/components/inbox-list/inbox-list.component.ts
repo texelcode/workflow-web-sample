@@ -13,6 +13,7 @@ export class InboxListComponent implements OnInit {
   inboxs: Inbox[] = [];
   rows: Array<any> = [];
   selected: Inbox[] = [];
+  reorderable = true;
   inbox: Inbox;
   inboxStatus = InboxStatus;
   columns = [

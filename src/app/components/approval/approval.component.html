@@ -6,7 +6,9 @@
           <h3>Request Detail</h3>
         </td>
         <td width="20%" align="right">
-
+            <button type="button" class="btn btn-warning square" (click)="onCancel()">
+                <span class="fa fa-times"></span>
+            </button>
         </td>
       </tr>
     </table>
@@ -31,6 +33,11 @@
             <td><label>{{request.created | date:'MM/dd/yyyy'}}</label></td>
           </tr>
           <tr>
+              <td><label>Leave Days</label></td>
+              <td><label>:</label></td>
+              <td><label>{{request.leave_days}} day(s)</label></td>
+          </tr>
+          <tr>
               <td><label>Reason</label></td>
               <td><label>:</label></td>
               <td><label>{{request.reason.name}}</label></td>
@@ -41,32 +48,61 @@
               <td><label>{{request.note}}</label></td>
           </tr>
           <tr>
-              <td><label>Leave Days</label></td>
-              <td><label>:</label></td>
-              <td><label>{{request.leave_days}}</label></td>
-          </tr>
-          <tr>
-              <td><label>Leave Start</label></td>
-              <td><label>:</label></td>
-              <td><label>{{min | date:'MM/dd/yyyy'}}</label></td>
-          </tr>
-          <tr>
-              <td><label>Leave End</label></td>
-              <td><label>:</label></td>
-              <td><label>{{max | date:'MM/dd/yyyy'}}</label></td>
-          </tr>
-          <tr>
               <td><label>Status</label></td>
               <td><label>:</label></td>
               <td><label>{{approvalStatus[request.status]}}</label></td>
           </tr>
         </table>
     </div>
-    
-    <hr>
-    <div class="row" style="padding: 0px 10px;">
-      <button type="button" class="btn btn-primary square" style="width: 140px;" (click)="onBack()">Back</button>
-    </div>
+    <button type="button" class="btn btn-default square" (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic"
+        style="width:120px;">Details
+    </button>
+    <div id="collapseBasic" [collapse]="isCollapsed" class="card card-block card-header"
+    style="margin: 5px 0px 0px -5px;">
+      <table width="100%">
+
+        <tr>
+            <td width="20%"><label>Leave Period</label></td>
+            <td width="5%"><label>:</label></td>
+            <td  width="75%"><label>{{min | date:'MM/dd/yyyy'}} - {{max | date:'MM/dd/yyyy'}}</label></td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><label>Leave Dates</label></td>
+            <td style="vertical-align: top;"><label>:</label></td>
+            <td style="vertical-align: top;">
+              <div style="height: 80px; display: inline-block">
+                <table>
+                  <tr *ngFor="let item of leave_dates; let i = index">
+                    <td width="30px">{{i + 1}} . </td>
+                    <td width="20px"></td>
+                    <td width="250px">{{item | date:'MM/dd/yyyy'}}</td>
+                  </tr>
+                </table>
+            </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="vertical-align: top;"><label>Approver</label></td>
+            <td style="vertical-align: top;"><label>:</label></td>
+            <td style="vertical-align: top;">
+              <div style="height: 80px; display: inline-block">
+                <table>
+                  <tr *ngFor="let item of recipients; let i = index">
+                    <td width="30px">{{i + 1}} . </td>
+                    <td width="20px"></td>
+                    <td width="150px">{{item.user.name}}</td>
+                    <td width="100px">{{item.result}}</td>
+                  </tr>
+                </table>
+            </div>
+            </td>
+        </tr>
+
+      </table>
+      </div>
+
   </div>
   <hr>
 <app-footer></app-footer>

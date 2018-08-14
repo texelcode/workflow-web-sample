@@ -71,8 +71,8 @@
   </div>
   <hr>
   <div class="row" style="padding: 0px 10px;">
-    <button type="button" class="btn btn-primary square" style="width: 140px;" (click)="setApproval(true)">Approve</button>
-    <button type="button" class="btn btn-warning square" style="margin-left: 20px;width: 140px;" (click)="setApproval(false)">Decline</button>
+    <button [style.display]="inbox.status != 2 ? 'none':'inherit'" type="button" class="btn btn-primary square" style="width: 140px;" (click)="setApproval(true)">Approve</button>
+    <button [style.display]="inbox.status != 2 ? 'none':'inherit'" type="button" class="btn btn-warning square" style="margin-left: 20px;width: 140px;" (click)="setApproval(false)">Decline</button>
   </div>
 </div>
 <hr>

@@ -6,7 +6,9 @@
           <h3>Leave Request</h3>
         </td>
         <td width="20%" align="right">
-
+            <button type="button" class="btn btn-warning square" (click)="onCancel()">
+                <span class="fa fa-times"></span>
+            </button>
         </td>
       </tr>
     </table>
@@ -14,59 +16,70 @@
 <hr><br>
 <div style="padding: 10px;">
     <form (ngSubmit)="onSubmit()" novalidate>
-      <div class="form-group row input-group" style="padding: 0px 10px;">
-        <table width="50%">
-          <tr>
-            <td width="10%"><label>Reason</label></td>
-            <td width="40%">
-              <ng-select [(ngModel)]="reason" name="reason" class="square" style="width:320px;">
+      <div class="form-group input-group divTable" style="padding: 10px;width: 360px;">
+        <div class="divBody" style="padding: 10px;width: 320px;">
+          <div class="divRow" style="padding: 10px;width: 320px;">
+            <div class="divCell" style="width: 120px;">
+              <label>Reason</label>
+            </div>
+            <div class="divCell" style="width: 200px;">
+              <ng-select [(ngModel)]="reasonId" name="reason" class="square">
                 <ng-option *ngFor="let reason of reasons" [value]="reason.id" >{{reason.name}}</ng-option>
               </ng-select>
-            </td>
-          </tr>
-          <tr>
-            <td><label>Leave Dates</label></td>
-            <td>
-              <div class="input-group" style="width: 320px;">
+            </div>
+          </div>
+          <div class="divRow" style="padding: 10px;width: 320px;">
+            <div class="divCell" style="width: 120px;">
+              <label>Leave Dates</label>
+            </div>
+            <div class="divCell" style="width: 200px;">
+                <div class="input-group">
                   <input class="form-control square" style="float:none;" placeholder="Select a date" ngx-mydatepicker name="mydate"
-                  [(ngModel)]="model" [options]="myOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)"/>
-                <span class="input-group-btn">
+                      [(ngModel)]="model" [options]="myOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)"/>
+                  <span class="input-group-btn" style="display:inline">
                     <button type="button" class="btn btn-default square" (click)="dp.toggleCalendar()">
-                        <i class="fa fa-calendar"></i>
+                      <i class="fa fa-calendar"></i>
                     </button>
-                </span>
+                  </span>
+                </div>
+            </div>
+          </div>
+          <div class="divRow" style="margin:5px 0px;width: 320px;">
+              <div class="divCell" style="width: 120px;">
+
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>
-              <div class="form-group row" style="margin: 0px;">
-                <table width="320px" frame="border" bordercolor="#AAA">
-                  <tbody style="height: 100px;display: inline-block;overflow-y: auto;">
-                    <tr width="320px" height="32" *ngFor="let leave of leave_dates">
-                      <td style="padding: 0px 5px;">{{leave | date:'MM/dd/yyyy'}}</td>
-                    </tr>
-                  </tbody>
+              <div class="divCell" style="width: 200px;">
+                <table width="100%" >
+                  <tr>
+                    <td style="vertical-align: top;"></td>
+                    <td style="vertical-align: top;">
+                      <div style="height: 80px;">
+                        <tr *ngFor="let item of leave_dates; let i = index">
+                          <td width=30px>{{i + 1}}.</td>
+                          <td width=20px></td>
+                          <td width=100px>{{item | date:'MM/dd/yyyy'}}</td>
+                        </tr>
+                      </div>
+                    </td>
+                  </tr>
                 </table>
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td><label>Note</label></td>
-            <td>
-              <input style="width: 320px;" type="text" class="form-control square" id="note" placeholder="Please leave a note" [(ngModel)]="note" name="note" required>
-            </td>
-          </tr>
-        </table>
+            </div>
+            <div class="divRow" style="padding:5px 10px;width: 320px;">
+                <div class="divCell" style="width: 120px;">
+                    <label>Note</label>
+                </div>
+                <div class="divCell" style="width: 200px;">
+                    <input style="width: 320px;" type="text" class="form-control square" id="note" placeholder="Please leave a note" [(ngModel)]="note" name="note" required>
+                </div>
+              </div>
+          </div>
       </div>
 
-        <div class="form-group row" style="padding: 0px 10px;width: 500px;">
-          </div>
-        <hr>
+      <hr>
         <div class="form-group row" style="padding: 0px 10px;">
           <button type="submit" class="btn btn-primary square" style="width: 140px;">Submit</button>
-          <button type="button" class="btn btn-default square" style="margin-left: 20px;width: 140px;" (click)="onCancel()">Cancel</button>
+          <button type="button" class="btn btn-warning square" style="margin-left: 20px;width: 140px;" (click)="onCancel()">Cancel</button>
         </div>
       </form>
 

@@ -17,6 +17,7 @@ export class ApprovalAddComponent implements OnInit {
   reasons: Reason[] = [];
   request: ApprovalRequest;
   reason: Reason;
+  reasonId: number;
   apprStatus = ApprovalStatus;
   note = '';
   now = new Date();
@@ -64,7 +65,7 @@ export class ApprovalAddComponent implements OnInit {
 
   onSubmit(): void {
     this.request = new ApprovalRequest;
-    this.request.reason_id = this.reason.id;
+    this.request.reason_id = this.reasonId;
     this.request.note = this.note;
     this.request.request_id = 1;
     this.request.user_id = +localStorage.getItem('user_id');
@@ -76,6 +77,7 @@ export class ApprovalAddComponent implements OnInit {
       },
       (err) => console.log(err)
     );
+    this.router.navigateByUrl('/approval');
   }
 
   onCancel() {

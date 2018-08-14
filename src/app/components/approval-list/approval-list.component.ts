@@ -18,6 +18,7 @@ export class ApprovalListComponent implements OnInit, OnDestroy {
   title: 'Approval List';
   requests: Approval[] = [];
   selected: Approval[] = [];
+  reorderable = true;
   rows: Array<any> = [];
   reasons: Reason[] = [];
   request: Approval;
@@ -87,10 +88,4 @@ export class ApprovalListComponent implements OnInit, OnDestroy {
     console.log('Activate Event', event);
   }
 
-}
-
-export class DateOnlyPipe extends DatePipe {
-  public transform(value): any {
-    return super.transform(value, 'MM/dd/y');
-  }
 }
