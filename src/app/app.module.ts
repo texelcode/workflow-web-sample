@@ -8,6 +8,8 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NotifierModule, NotifierOptions } from 'angular-notifier';
+import { SidebarModule } from 'ng-sidebar';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { SubmittedApprovalComponent } from './components/submitted-approval/submitted-approval.component';
@@ -34,6 +36,46 @@ import { ApprovalListComponent } from './components/approval-list/approval-list.
 import { ApprovalAddComponent } from './components/approval-add/approval-add.component';
 import { UserAddComponent } from './components/user-add/user-add.component';
 
+const customNotifierOptions: NotifierOptions = {
+  position: {
+		horizontal: {
+			position: 'left',
+			distance: 10
+		},
+		vertical: {
+			position: 'top',
+			distance: 5,
+			gap: 10
+		}
+	},
+  theme: 'material',
+  behaviour: {
+    autoHide: 5000,
+    onClick: 'hide',
+    onMouseover: 'pauseAutoHide',
+    showDismissButton: false,
+    stacking: 4
+  },
+  animations: {
+    enabled: true,
+    show: {
+      preset: 'slide',
+      speed: 300,
+      easing: 'ease'
+    },
+    hide: {
+      preset: 'fade',
+      speed: 300,
+      easing: 'ease',
+      offset: 50
+    },
+    shift: {
+      speed: 300,
+      easing: 'ease'
+    },
+    overlap: 150
+  }
+};
 
 @NgModule({
   imports: [
@@ -45,6 +87,8 @@ import { UserAddComponent } from './components/user-add/user-add.component';
     NgSelectModule,
     NgxPaginationModule,
     NgxDatatableModule,
+    NotifierModule.withConfig(customNotifierOptions),
+    SidebarModule.forRoot(),
     BsDropdownModule.forRoot(),
     NgxMyDatePickerModule.forRoot(),
     CollapseModule.forRoot()

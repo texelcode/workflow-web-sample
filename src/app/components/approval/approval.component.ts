@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 import { ApprovalService } from '../../services/approval.service';
 import { Approval } from '../../models/approval';
 import { ApprovalStatus } from '../../models/approval-status.enum';
@@ -20,10 +21,14 @@ export class ApprovalComponent implements OnInit, OnDestroy {
   leave_dates: number[] = [];
   recipients: Object;
   isCollapsed = true;
+  private readonly notifier: NotifierService;
   constructor(
     public router: Router,
     public route: ActivatedRoute,
-    public service: ApprovalService) { }
+    public service: ApprovalService,
+    notifierService: NotifierService) {
+      this.notifier = notifierService;
+    }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -51,7 +56,10 @@ export class ApprovalComponent implements OnInit, OnDestroy {
         this.leave_dates.sort((n1, n2) => n1 - n2);
         console.log(this.request);
       },
-      (err) => console.log(err)
+      (err) => {
+        this.notifier.notify( 'error', 'Request loading error!' );
+        console.log(err);
+      }
     );
   }
 

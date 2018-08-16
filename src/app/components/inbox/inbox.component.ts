@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 import { Inbox } from '../../models/inbox';
 import { InboxService } from '../../services/inbox.service';
 import { InboxApproval } from '../../models/inbox-approval';
@@ -21,10 +22,14 @@ export class InboxComponent implements OnInit, OnDestroy {
   approve = false;
   recipient_result_id: number;
   private sub: any;
+  private readonly notifier: NotifierService;
   constructor(
     public router: Router,
     private route: ActivatedRoute,
-    private service: InboxService) { }
+    private service: InboxService,
+    notifierService: NotifierService) {
+      this.notifier = notifierService;
+    }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -50,7 +55,10 @@ export class InboxComponent implements OnInit, OnDestroy {
         this.min = Math.min(...this.leave_dates);
         console.log(this.inbox);
       },
-      (err) => console.log(err)
+      (err) => {
+        this.notifier.notify( 'error', 'Inbox loading error!' );
+        console.log(err);
+      }
     );
   }
 
@@ -70,9 +78,12 @@ export class InboxComponent implements OnInit, OnDestroy {
     this.service.setApproval(this.approval)
     .subscribe((res) => {
          console.log('Approval Result : ' + JSON.stringify(res.data));
-         //this.reasons = JSON.parse(JSON.stringify(res.data));
+         // this.reasons = JSON.parse(JSON.stringify(res.data));
        },
-       (err) => console.log(err)
+       (err) => {
+        this.notifier.notify( 'error', 'Set approval error!' );
+        console.log(err);
+      }
      );
      this.router.navigateByUrl('/inbox');
   }

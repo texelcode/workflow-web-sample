@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { NotifierService } from 'angular-notifier';
 import { INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
 import { Approval } from '../../models/approval';
 import { Reason } from '../../models/reason';
@@ -31,10 +31,13 @@ export class ApprovalAddComponent implements OnInit {
 
   // Initialized to specific date (09.10.2018)
   model: any = { date: { year: 2018, month: 10, day: 9 } };
-
+  private readonly notifier: NotifierService;
   constructor(
     public router: Router,
-    private service: ApprovalService) { }
+    private service: ApprovalService,
+    notifierService: NotifierService) {
+      this.notifier = notifierService;
+    }
 
   ngOnInit() {
     this.loadReasons();
@@ -54,7 +57,10 @@ export class ApprovalAddComponent implements OnInit {
         this.reasons = JSON.parse(JSON.stringify(res.data));
         console.log(this.reasons);
       },
-      (err) => console.log(err)
+      (err) => {
+        this.notifier.notify( 'error', 'Reason loading error!' );
+        console.log(err);
+      }
     );
   }
 
@@ -75,7 +81,10 @@ export class ApprovalAddComponent implements OnInit {
       (res) => {
         console.log(res.data);
       },
-      (err) => console.log(err)
+      (err) => {
+        this.notifier.notify( 'error', 'Submit request error!' );
+        console.log(err);
+      }
     );
     this.router.navigateByUrl('/approval');
   }

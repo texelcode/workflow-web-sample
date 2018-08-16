@@ -5,6 +5,7 @@
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+@import '~angular-notifier/styles.css';
 .card-container.card {
   max-width: 375px;
   padding: 40px 40px;

@@ -1,5 +1,4 @@
-<div class="card card-container fixed-top" [style.display]="(!connected) ? 'inherit':'none'">
-    <hr>
+<div class="card card-container fixed-top" [style.display]="(connected) ? 'inherit':'none'">
     <h1>{{title}}</h1>
     <hr>
     <form (ngSubmit)="onLogin()" novalidate>
@@ -21,6 +20,6 @@
       </div>
     </form>
   </div>
-  <div class="fixed-top" [style.display]="(connected) ? 'inherit':'none'">
+  <div class="fixed-top" [style.display]="(!connected) ? 'inherit':'none'">
     <app-connection></app-connection>
   </div>

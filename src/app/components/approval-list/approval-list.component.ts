@@ -1,13 +1,15 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter, Pipe, PipeTransform } from '@angular/core';
 import { Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
+import { NotifierService } from 'angular-notifier';
 import { Subscription } from 'rxjs';
 import { ApprovalService } from '../../services/approval.service';
 import { MessageService } from '../../services/message.service';
 import { Approval } from '../../models/approval';
 import { Reason } from '../../models/reason';
 import { ApprovalStatus } from '../../models/approval-status.enum';
-
+import { InboxService } from '../../services/inbox.service';
+import { Inbox } from '../../models/inbox';
+import { InboxStatus } from '../../models/inbox-status.enum';
 
 @Component({
   selector: 'app-approval-list',
@@ -16,6 +18,8 @@ import { ApprovalStatus } from '../../models/approval-status.enum';
 })
 export class ApprovalListComponent implements OnInit, OnDestroy {
   title: 'Approval List';
+  inboxs: Inbox[] = [];
+  waits: Inbox[] = [];
   requests: Approval[] = [];
   selected: Approval[] = [];
   reorderable = true;
@@ -34,10 +38,15 @@ export class ApprovalListComponent implements OnInit, OnDestroy {
     { name: 'Reason', prop: 'reason.name', width: 200, minWidth: 150, maxWidth: 300, canAutoResize: true},
     { name: 'Status', prop: 'apprStatus[status]', width: 1000, minWidth: 600, maxWidth: 1200, canAutoResize: true}
   ];
+  private readonly notifier: NotifierService;
   constructor(
     public router: Router,
     public pesan: MessageService,
-    private service: ApprovalService) { }
+    private service: ApprovalService,
+    private inbox: InboxService,
+    notifierService: NotifierService) {
+      this.notifier = notifierService;
+    }
 
   ngOnInit() {
     this.loadRequests();
@@ -48,6 +57,21 @@ export class ApprovalListComponent implements OnInit, OnDestroy {
       this.message = message;
       console.log(message);
     });
+    this.inbox.loadInboxs().subscribe(
+      (res) => {
+        this.inboxs = JSON.parse(JSON.stringify(res.data));
+        this.waits = this.inboxs.filter(x => x.status === InboxStatus.waiting);
+        if (this.waits) {
+          if (this.waits.length > 0) {
+            this.notifier.notify( 'warning', 'You have waiting approval in your inbox!' );
+          }
+        }
+      },
+      (err) => {
+        this.notifier.notify( 'error', 'Inbox loading error!' );
+        console.log(err);
+      }
+    );
   }
 
   ngOnDestroy() {
@@ -61,7 +85,10 @@ export class ApprovalListComponent implements OnInit, OnDestroy {
         this.rows = this.requests;
         console.log(this.requests);
       },
-      (err) => console.log(err)
+      (err) => {
+        this.notifier.notify( 'error', 'Request loading error!' );
+        console.log(err);
+      }
     );
   }
 

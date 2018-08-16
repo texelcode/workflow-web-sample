@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 import { ConnectionService } from '../../services/connection.service';
 
 @Component({
@@ -8,9 +9,15 @@ import { ConnectionService } from '../../services/connection.service';
   styleUrls: ['./connection.component.css']
 })
 export class ConnectionComponent implements OnInit {
-  public connected: Boolean = false;
-  public ipaddress: 'localhost:8091';
-  constructor(public router: Router, private connection: ConnectionService) { }
+  connected = false;
+  ipaddress = 'localhost:8091';
+  private readonly notifier: NotifierService;
+  constructor(
+    public router: Router,
+    private connection: ConnectionService,
+    notifierService: NotifierService) {
+      this.notifier = notifierService;
+    }
 
   ngOnInit() {
   }
@@ -19,10 +26,19 @@ export class ConnectionComponent implements OnInit {
     this.connection.test(this.ipaddress).subscribe(
       (res) => {
         this.connected = res.ok;
-        this.router.navigateByUrl('/login');
-        console.log('Connected with host : ' + this.ipaddress);
+        if (res.ok) {
+          this.notifier.notify( 'success', 'Connection success!' );
+          this.router.navigateByUrl('/login');
+          console.log('Connected with host : ' + this.ipaddress);
+        } else {
+          this.notifier.notify( 'error', 'Connection denied!' );
+        }
+
       },
-      (err) => console.log(err)
+      (err) => {
+        this.notifier.notify( 'error', 'Connection test error!' );
+        console.log(err);
+      }
     );
 
   }

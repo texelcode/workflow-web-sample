@@ -1,7 +1,11 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
+import { InboxService } from '../../services/inbox.service';
+import { Inbox } from '../../models/inbox';
+import { InboxStatus } from '../../models/inbox-status.enum';
 
 @Component({
   selector: 'app-user-list',
@@ -9,6 +13,8 @@ import { User } from '../../models/user';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
+  inboxs: Inbox[] = [];
+  waits: Inbox[] = [];
   user: User;
   users: User[] = [];
   rows: Array<any> = [];
@@ -28,10 +34,14 @@ export class UserListComponent implements OnInit {
   //   pagerRightArrow: 'fa fa-angle-double-right',
   //   pagerPrevious: 'fa fa-angle-left',
   //   pagerNext: 'fa fa-angle-right' };
-
+  private readonly notifier: NotifierService;
   constructor(
     public router: Router,
-    private service: UserService) { }
+    private service: UserService,
+    private inbox: InboxService,
+    notifierService: NotifierService) {
+      this.notifier = notifierService;
+    }
 
   ngOnInit() {
     this.service.load().subscribe(
@@ -39,10 +49,27 @@ export class UserListComponent implements OnInit {
         this.users = JSON.parse(JSON.stringify(res.data));
         this.rows = this.users;
       },
-      (err) => console.log(err)
+      (err) => {
+        this.notifier.notify( 'error', 'User loading error!' );
+        console.log(err);
+      }
+    );
+    this.inbox.loadInboxs().subscribe(
+      (res) => {
+        this.inboxs = JSON.parse(JSON.stringify(res.data));
+        this.waits = this.inboxs.filter(x => x.status === InboxStatus.waiting);
+        if (this.waits) {
+          if (this.waits.length > 0) {
+            this.notifier.notify( 'warning', 'You have waiting approval in your inbox!' );
+          }
+        }
+      },
+      (err) => {
+        this.notifier.notify( 'error', 'Inbox loading error!' );
+        console.log(err);
+      }
     );
   }
-
 
   addItem() {
     this.router.navigateByUrl('/add-user');

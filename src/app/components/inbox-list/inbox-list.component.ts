@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 import { Inbox } from '../../models/inbox';
 import { InboxService } from '../../services/inbox.service';
 import { InboxStatus } from '../../models/inbox-status.enum';
@@ -19,10 +20,13 @@ export class InboxListComponent implements OnInit {
   columns = [
     { name: 'Name', width: 400, minWidth: 100, maxWidth: 500, canAutoResize: true},
   ];
-
+  private readonly notifier: NotifierService;
   constructor(
     public router: Router,
-    private service: InboxService) { }
+    private service: InboxService,
+    notifierService: NotifierService) {
+      this.notifier = notifierService;
+    }
 
   ngOnInit() {
     this.service.loadInboxs().subscribe(
@@ -31,7 +35,10 @@ export class InboxListComponent implements OnInit {
         this.rows = this.inboxs;
         console.log(res.data);
       },
-      (err) => console.log(err)
+      (err) => {
+        this.notifier.notify( 'error', 'Inbox loading error!' );
+        console.log(err);
+      }
     );
   }
 
