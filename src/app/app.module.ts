@@ -9,7 +9,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
-import { SidebarModule } from 'ng-sidebar';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { SubmittedApprovalComponent } from './components/submitted-approval/submitted-approval.component';
@@ -35,6 +34,8 @@ import { InboxListComponent } from './components/inbox-list/inbox-list.component
 import { ApprovalListComponent } from './components/approval-list/approval-list.component';
 import { ApprovalAddComponent } from './components/approval-add/approval-add.component';
 import { UserAddComponent } from './components/user-add/user-add.component';
+import { SidebarService } from './services/sidebar.service';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -88,7 +89,6 @@ const customNotifierOptions: NotifierOptions = {
     NgxPaginationModule,
     NgxDatatableModule,
     NotifierModule.withConfig(customNotifierOptions),
-    SidebarModule.forRoot(),
     BsDropdownModule.forRoot(),
     NgxMyDatePickerModule.forRoot(),
     CollapseModule.forRoot()
@@ -111,7 +111,8 @@ const customNotifierOptions: NotifierOptions = {
     InboxListComponent,
     ApprovalListComponent,
     ApprovalAddComponent,
-    UserAddComponent
+    UserAddComponent,
+    SidebarComponent
   ],
   providers: [
     EnsureAuthenticatedService,
@@ -119,7 +120,8 @@ const customNotifierOptions: NotifierOptions = {
     ErrorHandlerService,
     ConnectionService,
     UserService,
-    InboxService],
+    InboxService,
+    SidebarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

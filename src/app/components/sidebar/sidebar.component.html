@@ -1,0 +1,11 @@
+<div class="navbar-nav">
+    <a class="nav-item nav-link" [class.active]="router.url==='/home'" [routerLink]="['/home']" (click)="toggle()">Home</a>
+    <a class="nav-item nav-link" [class.active]="router.url==='/inbox'" [routerLink]="['/inbox']" (click)="toggle()">Inbox</a>
+    <a class="nav-item nav-link" [class.active]="router.url==='/approval'" [routerLink]="['/approval']" (click)="toggle()">Request</a>
+    <a class="nav-item nav-link" [class.active]="router.url==='/user'" [routerLink]="['/user']"  (click)="toggle()">User</a>
+    <div class="divider dropdown-divider"></div>
+    <div>
+        <button type="button" class="btn btn-warning square" (click)="onLogout()"
+        style="width: 100%;">Logout</button>
+    </div>
+</div>

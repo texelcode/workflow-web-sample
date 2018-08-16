@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy, ViewChild, Input, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { SidebarService } from '../../services/sidebar.service';
 import { UserService } from '../../services/user.service';
 import { MessageService } from '../../services/message.service';
 
@@ -9,13 +10,16 @@ import { MessageService } from '../../services/message.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
   message: any;
   title = '';
+
+
   constructor(
     public router: Router,
     public pesan: MessageService,
-    private service: UserService) { }
+    private service: UserService,
+    private sideBarService: SidebarService) { }
 
   ngOnInit() {
 
@@ -26,23 +30,8 @@ export class HeaderComponent implements OnInit{
     this.router.navigateByUrl('/login');
   }
 
-  goHome() {
-    this.router.navigateByUrl('/home');
-  }
-
-  goInbox() {
-    this.router.navigateByUrl('/inbox');
-  }
-
-  goRequest() {
-    //this.router.navigateByUrl('/approval');
-    //this.pesan.sendMessage('Request List');
-    this.title = 'Request List';
-  }
-
-  goUser() {
-    //this.router.navigateByUrl('/user');
-    //this.pesan.sendMessage(this.title);
+  toggle() {
+    this.sideBarService.toggle();
   }
 
 }

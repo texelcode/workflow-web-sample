@@ -1,0 +1,16 @@
+:host {
+  box-sizing: border-box;
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 60px;
+  margin-bottom: -120px;
+  width: 240px;
+  height: 100vh;
+  padding: 20px 10px;
+  overflow: hidden;
+}
+
+:host.is-open {
+  display: block;
+}
