@@ -40,6 +40,12 @@ body { padding-top: 60px; }
   white-space: wrap;
 }
 td > div { overflow-y:auto;overflow-x:hidden;}
+button > span {
+  margin: 0 auto;
+  padding: 0;
+  display: inline-block;
+  text-align: center;
+}
 .scroll {
   height: 420px;
   overflow-y: auto;
@@ -80,7 +86,18 @@ ul li:hover ul {display: block;}
 .ngx-datatable .datatable-footer .page-count{
   display: none !important;
 }
-
+.fade {
+  -webkit-animation: fadeInOut 1s ease;
+  -webkit-animation-delay: 2s;
+  animation: fadeInOut 1s ease;
+  animation-delay: 2s;
+}
+.slide {
+  -webkit-animation: slide 1s ease forwards;
+  -webkit-animation-delay: 2s;
+  animation: slide 1s ease forwards;
+  animation-delay: 2s;
+}
 @media only screen and (max-width: 576px) {
 .one{
     display: none;

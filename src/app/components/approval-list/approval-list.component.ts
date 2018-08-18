@@ -83,7 +83,6 @@ export class ApprovalListComponent implements OnInit, OnDestroy {
       (res) => {
         this.requests = JSON.parse(JSON.stringify(res.data));
         this.rows = this.requests;
-        console.log(this.requests);
       },
       (err) => {
         this.notifier.notify( 'error', 'Request loading error!' );

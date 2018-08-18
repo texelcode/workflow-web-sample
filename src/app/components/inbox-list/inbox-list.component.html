@@ -36,47 +36,79 @@
               {{rowIndex + 1}}
           </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="ID"
+      <ngx-datatable-column name="ID" *hideItBootstrap="['xs','sm']"
       prop= "leave_header.wf_instance_name"
-      [width]= "180"
-      [minWidth]= "180"
-      [maxWidth]= "200"
-      [canAutoResize]= "false">
-          <ng-template let-value="value" ngx-datatable-cell-template>
-              {{value}}
-          </ng-template>
+      [width]= "150"
+      [minWidth]= "150"
+      [maxWidth]= "160"
+      [canAutoResize]= "true">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+        </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Date"
-      prop= "leave_header.created"
-      [width]= "200"
-      [minWidth]= "200"
-      [maxWidth]= "300"
-      [canAutoResize]= "false">
+      prop= "date_submitted"
+      [flexGrow]="2"
+      [width]= "120"
+      [minWidth]= "120"
+      [maxWidth]= "140"
+      [canAutoResize]= "true">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{value | date:'MM/dd/yyyy'}}
           </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Name"
       prop= "requester_user.name"
-      [width]= "400"
+      [width]= "300"
       [minWidth]= "300"
-      [maxWidth]= "500"
+      [maxWidth]= "400"
       [canAutoResize]= "true">
           <ng-template let-value="value" ngx-datatable-cell-template>
               {{value}}
           </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Status"
-      prop= "status"
-      [width]= "1000"
-      [minWidth]= "1000"
-      [maxWidth]= "1000"
+      <ngx-datatable-column name="Reason" *hideItBootstrap="['xs','sm']"
+      prop= "leave_header.reason.name"
+      [width]= "120"
+      [minWidth]= "120"
+      [maxWidth]= "150"
       [canAutoResize]= "true">
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            {{inboxStatus[value]}}
-          </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+        </ng-template>
       </ngx-datatable-column>
+      <ngx-datatable-column name="Days" *hideItBootstrap="['xs','sm']"
+      prop= "leave_header.leave_days"
+      [width]= "50"
+      [minWidth]= "50"
+      [maxWidth]= "50"
+      [canAutoResize]= "true">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Note" *hideItBootstrap="['xs','sm']"
+      prop= "leave_header.note"
+      [width]= "400"
+      [minWidth]= "350"
+      [maxWidth]= "500"
+      [canAutoResize]= "true">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Status" *hideItBootstrap="['xs','sm']"
+      [flexGrow]="1"
+      prop= "status"
+      [width]= "200"
+      [minWidth]= "200"
+      [maxWidth]= "200"
+      [canAutoResize]= "true">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            {{inboxStatus[value]}}
+        </ng-template>
+
+        </ngx-datatable-column>
   </ngx-datatable>
 </div>
-<hr>
 <app-footer></app-footer>

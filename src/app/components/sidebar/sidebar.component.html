@@ -1,4 +1,9 @@
-<div class="navbar-nav">
+<div class="navbar-nav"
+(clickOutside)="onClickedOutside($event)"
+[attachOutsideOnClick]="attachOutsideOnClick"
+[clickOutsideEnabled]="enabled"
+[emitOnBlur]="false"
+[exclude]="'.btn-primary, .btn-warning, .nav-item, .navbar-brand'">
     <a class="nav-item nav-link" [class.active]="router.url==='/home'" [routerLink]="['/home']" (click)="toggle()">Home</a>
     <a class="nav-item nav-link" [class.active]="router.url==='/inbox'" [routerLink]="['/inbox']" (click)="toggle()">Inbox</a>
     <a class="nav-item nav-link" [class.active]="router.url==='/approval'" [routerLink]="['/approval']" (click)="toggle()">Request</a>

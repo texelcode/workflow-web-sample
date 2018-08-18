@@ -9,6 +9,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
+import { ClickOutsideModule } from 'ng-click-outside';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { SubmittedApprovalComponent } from './components/submitted-approval/submitted-approval.component';
@@ -36,6 +37,7 @@ import { ApprovalAddComponent } from './components/approval-add/approval-add.com
 import { UserAddComponent } from './components/user-add/user-add.component';
 import { SidebarService } from './services/sidebar.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ResponsiveModule } from 'ngx-responsive'
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -77,7 +79,16 @@ const customNotifierOptions: NotifierOptions = {
     overlap: 150
   }
 };
-
+const config = {
+  breakPoints: {
+      xs: {max: 600},
+      sm: {min: 601, max: 959},
+      md: {min: 960, max: 1279},
+      lg: {min: 1280, max: 1919},
+      xl: {min: 1920}
+  },
+  debounceTime: 100
+};
 @NgModule({
   imports: [
     BrowserModule,
@@ -88,8 +99,10 @@ const customNotifierOptions: NotifierOptions = {
     NgSelectModule,
     NgxPaginationModule,
     NgxDatatableModule,
+    ClickOutsideModule,
     NotifierModule.withConfig(customNotifierOptions),
     BsDropdownModule.forRoot(),
+    ResponsiveModule.forRoot(config),
     NgxMyDatePickerModule.forRoot(),
     CollapseModule.forRoot()
   ],

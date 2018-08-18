@@ -33,7 +33,6 @@ export class InboxListComponent implements OnInit {
       (res) => {
         this.inboxs = JSON.parse(JSON.stringify(res.data));
         this.rows = this.inboxs;
-        console.log(res.data);
       },
       (err) => {
         this.notifier.notify( 'error', 'Inbox loading error!' );

@@ -16,23 +16,29 @@
 <hr><br>
 <div style="padding: 10px;">
     <form (ngSubmit)="onSubmit()" novalidate>
-      <div class="form-group input-group divTable" style="padding: 10px;width: 360px;">
-        <div class="divBody" style="padding: 10px;width: 320px;">
-          <div class="divRow" style="padding: 10px;width: 320px;">
-            <div class="divCell" style="width: 120px;">
+      <div class="form-group input-group divTable">
+        <div class="divBody">
+          <div class="divRow" style="margin-top: 10px;">
+            <div *showItBootstrap="['xs','sm']" class="divCell" style="width: 110px;">
               <label>Reason</label>
             </div>
-            <div class="divCell" style="width: 200px;">
+            <div *showItBootstrap="['md','lg','xl']" class="divCell" style="width: 120px;">
+              <label>Reason</label>
+            </div>
+            <div class="divCell" style="width: 240px;">
               <ng-select [(ngModel)]="reasonId" name="reason" class="square">
                 <ng-option *ngFor="let reason of reasons" [value]="reason.id" >{{reason.name}}</ng-option>
               </ng-select>
             </div>
           </div>
-          <div class="divRow" style="padding: 10px;width: 320px;">
-            <div class="divCell" style="width: 120px;">
+          <div class="divRow" style="margin-top: 10px;">
+            <div *showItBootstrap="['xs','sm']" class="divCell" style="width: 110px;">
               <label>Leave Dates</label>
             </div>
-            <div class="divCell" style="width: 200px;">
+            <div *showItBootstrap="['md','lg','xl']" class="divCell" style="width: 120px;">
+              <label>Leave Dates</label>
+            </div>
+            <div class="divCell" style="width: 240px;">
                 <div class="input-group">
                   <input class="form-control square" style="float:none;" placeholder="Select a date" ngx-mydatepicker name="mydate"
                       [(ngModel)]="model" [options]="myOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)"/>
@@ -44,11 +50,11 @@
                 </div>
             </div>
           </div>
-          <div class="divRow" style="margin:5px 0px;width: 320px;">
-              <div class="divCell" style="width: 120px;">
+          <div class="divRow" style="margin-top: 10px;">
+              <div class="divCell" style="width: 100px;">
 
               </div>
-              <div class="divCell" style="width: 200px;">
+              <div class="divCell" style="width: 240px;">
                 <table width="100%" >
                   <tr>
                     <td style="vertical-align: top;"></td>
@@ -65,12 +71,18 @@
                 </table>
               </div>
             </div>
-            <div class="divRow" style="padding:5px 10px;width: 320px;">
-                <div class="divCell" style="width: 120px;">
-                    <label>Note</label>
+            <div class="divRow">
+                <div *showItBootstrap="['xs','sm']" class="divCell" style="width: 110px;">
+                  <label>Note</label>
                 </div>
-                <div class="divCell" style="width: 200px;">
-                    <input style="width: 320px;" type="text" class="form-control square" id="note" placeholder="Please leave a note" [(ngModel)]="note" name="note" required>
+                <div *showItBootstrap="['md','lg','xl']" class="divCell" style="width: 120px;">
+                  <label>Note</label>
+                </div>
+                <div *showItBootstrap="['xs','sm']" class="divCell" style="width: 240px;">
+                    <input style="width: 240px;" type="text" class="form-control square" id="note" placeholder="Please leave a note" [(ngModel)]="note" name="note" required>
+                </div>
+                <div *showItBootstrap="['md','lg','xl']" class="divCell" style="width: 260px;">
+                    <input style="width: 260px;" type="text" class="form-control square" id="note" placeholder="Please leave a note" [(ngModel)]="note" name="note" required>
                 </div>
               </div>
           </div>
@@ -84,5 +96,4 @@
       </form>
 
   </div>
-  <hr>
 <app-footer></app-footer>

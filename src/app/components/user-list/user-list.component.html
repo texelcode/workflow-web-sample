@@ -37,6 +37,37 @@
               {{rowIndex + 1}}
           </ng-template>
       </ngx-datatable-column>
+      <ngx-datatable-column name="ID" *hideItBootstrap="['xs','sm']"
+      prop= "id"
+      [width]= "50"
+      [minWidth]= "50"
+      [maxWidth]= "50"
+      [canAutoResize]= "true">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Name"
+      prop= "name"
+      [width]= "400"
+      [minWidth]= "400"
+      [maxWidth]= "500"
+      [canAutoResize]= "true">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Email" *hideItBootstrap="['xs','sm']"
+      prop= "email"
+      [width]= "1000"
+      [minWidth]= "1000"
+      [maxWidth]= "1000"
+      [canAutoResize]= "true">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+      <!--
       <ngx-datatable-column style="white-space: normal;"
       *ngFor="let col of columns"
       [name]="col.name"
@@ -45,7 +76,7 @@
       [maxWidth]= "col.maxWidth"
       [minWidth]="col.minWidth">
     </ngx-datatable-column>
+     -->
   </ngx-datatable>
 </div>
-<hr>
 <app-footer></app-footer>

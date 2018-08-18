@@ -30,7 +30,7 @@
         <tr>
           <td><label>Requested</label></td>
           <td><label>:</label></td>
-          <td><label>{{inbox.leave_header.created | date:'MM/dd/yyyy'}}</label></td>
+          <td><label>{{inbox.date_submitted | date:'MM/dd/yyyy'}}</label></td>
         </tr>
         <tr>
             <td><label>Requester</label></td>
@@ -71,9 +71,10 @@
   </div>
   <hr>
   <div class="row" style="padding: 0px 10px;">
-    <button style="width: 140px; text-align: center;" [style.display]="inbox.status != 2 ? 'none':'inherit'" type="button" class="btn btn-primary square"  (click)="setApproval(true)">Approve</button>
-    <button style="margin-left: 20px;width: 140px; text-align: center;" [style.display]="inbox.status != 2 ? 'none':'inherit'" type="button" class="btn btn-warning square"  (click)="setApproval(false)">Decline</button>
+    <button style="width: 140px;" [style.display]="inbox.status != 2 ? 'none':'inherit'" type="button" class="btn btn-primary square"  (click)="setApproval(true)">
+      <span>Approve</span></button>
+    <button style="margin-left: 20px;width: 140px;" [style.display]="inbox.status != 2 ? 'none':'inherit'" type="button" class="btn btn-warning square"  (click)="setApproval(false)">
+      <span>Decline</span></button>
   </div>
 </div>
-<hr>
 <app-footer></app-footer>

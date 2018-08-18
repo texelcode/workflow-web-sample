@@ -13,4 +13,8 @@ export class SidebarService {
     this.isOpen = !this.isOpen;
     this.change.emit(this.isOpen);
   }
+
+  getChange() {
+    return this.change;
+  }
 }

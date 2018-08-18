@@ -12,6 +12,8 @@ export class SidebarComponent implements OnInit {
 
   @HostBinding('class.is-open')
   isOpen = false;
+  attachOutsideOnClick = false;
+  enabled = true;
   constructor(
     public router: Router,
     private service: UserService,
@@ -24,13 +26,20 @@ export class SidebarComponent implements OnInit {
   }
 
   toggle() {
-    this.sideBarService.toggle();
+    if (this.isOpen) {
+      this.sideBarService.toggle();
+    }
   }
 
   onLogout(): void {
     this.service.remove();
-    this.toggle();
     this.router.navigateByUrl('/login');
+  }
+
+  onClickedOutside(e: Event) {
+    if (this.isOpen) {
+      this.sideBarService.toggle();
+    }
   }
 
 }
