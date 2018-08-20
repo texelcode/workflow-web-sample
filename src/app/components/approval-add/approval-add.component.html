@@ -14,12 +14,12 @@
     </table>
 </div>
 <hr><br>
-<div style="padding: 10px;">
+<div style="padding: 10px;width: 400px;">
     <form (ngSubmit)="onSubmit()" novalidate>
-      <div class="form-group input-group divTable">
-        <div class="divBody">
+      <div class="form-group input-group divTable" style="width: 400px;">
+        <div class="divBody" style="width: 400px;">
           <div class="divRow" style="margin-top: 10px;">
-            <div *showItBootstrap="['xs','sm']" class="divCell" style="width: 110px;">
+            <div *showItBootstrap="['xs','sm']" class="divCell" style="width: 100px;">
               <label>Reason</label>
             </div>
             <div *showItBootstrap="['md','lg','xl']" class="divCell" style="width: 120px;">
@@ -32,13 +32,13 @@
             </div>
           </div>
           <div class="divRow" style="margin-top: 10px;">
-            <div *showItBootstrap="['xs','sm']" class="divCell" style="width: 110px;">
+            <div *showItBootstrap="['xs','sm']" class="divCell" style="width: 100px;">
               <label>Leave Dates</label>
             </div>
             <div *showItBootstrap="['md','lg','xl']" class="divCell" style="width: 120px;">
               <label>Leave Dates</label>
             </div>
-            <div class="divCell" style="width: 240px;">
+            <div class="divCell" style="width: 220px;">
                 <div class="input-group">
                   <input class="form-control square" style="float:none;" placeholder="Select a date" ngx-mydatepicker name="mydate"
                       [(ngModel)]="model" [options]="myOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)"/>
@@ -72,7 +72,7 @@
               </div>
             </div>
             <div class="divRow">
-                <div *showItBootstrap="['xs','sm']" class="divCell" style="width: 110px;">
+                <div *showItBootstrap="['xs','sm']" class="divCell" style="width: 100px;">
                   <label>Note</label>
                 </div>
                 <div *showItBootstrap="['md','lg','xl']" class="divCell" style="width: 120px;">

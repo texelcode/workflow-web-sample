@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
-  toggle() {
+  toggle(event: any) {
     this.sideBarService.toggle();
     event.stopPropagation();
   }

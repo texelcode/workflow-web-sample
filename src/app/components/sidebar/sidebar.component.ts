@@ -33,6 +33,9 @@ export class SidebarComponent implements OnInit {
 
   onLogout(): void {
     this.service.remove();
+    if (this.isOpen) {
+      this.sideBarService.toggle();
+    }
     this.router.navigateByUrl('/login');
   }
 

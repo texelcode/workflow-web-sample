@@ -37,27 +37,27 @@ import { ApprovalAddComponent } from './components/approval-add/approval-add.com
 import { UserAddComponent } from './components/user-add/user-add.component';
 import { SidebarService } from './services/sidebar.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { ResponsiveModule } from 'ngx-responsive'
+import { ResponsiveModule } from 'ngx-responsive';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
-		horizontal: {
-			position: 'left',
-			distance: 10
-		},
-		vertical: {
-			position: 'top',
-			distance: 5,
-			gap: 10
-		}
-	},
+    horizontal: {
+      position: 'right',
+      distance: 0
+    },
+    vertical: {
+      position: 'bottom',
+      distance: 0,
+      gap: 10
+    }
+  },
   theme: 'material',
   behaviour: {
     autoHide: 5000,
     onClick: 'hide',
     onMouseover: 'pauseAutoHide',
-    showDismissButton: false,
-    stacking: 4
+    showDismissButton: true,
+    stacking: 5
   },
   animations: {
     enabled: true,

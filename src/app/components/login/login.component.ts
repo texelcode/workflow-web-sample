@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       this.service.load().subscribe(
         (res) => {
           this.users = JSON.parse(JSON.stringify(res.data));
-          this.user = this.users.find(x => x.email === this.email);
+          this.user = this.users.find(x => x.email === this.email.toLowerCase());
           if (this.user) {
             // this.service.save(this.user);
             // localStorage.removeItem('user_id');
