@@ -23,6 +23,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: '#',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  {
     path: 'login',
     component: LoginComponent,
     canActivate: [LoginRedirectService]

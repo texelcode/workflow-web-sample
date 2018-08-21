@@ -36,7 +36,7 @@ export class ConnectionComponent implements OnInit {
 
       },
       (err) => {
-        this.notifier.notify( 'error', 'Connection test error!' );
+        this.notifier.notify( 'error', 'Connection error!' );
         console.log(err);
       }
     );

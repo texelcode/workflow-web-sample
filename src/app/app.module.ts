@@ -35,9 +35,9 @@ import { InboxListComponent } from './components/inbox-list/inbox-list.component
 import { ApprovalListComponent } from './components/approval-list/approval-list.component';
 import { ApprovalAddComponent } from './components/approval-add/approval-add.component';
 import { UserAddComponent } from './components/user-add/user-add.component';
-import { SidebarService } from './services/sidebar.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ResponsiveModule } from 'ngx-responsive';
+import { EventService } from './services/event.service';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -134,7 +134,7 @@ const config = {
     ConnectionService,
     UserService,
     InboxService,
-    SidebarService],
+    EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

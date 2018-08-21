@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { Subscription } from 'rxjs';
 import { ApprovalService } from '../../services/approval.service';
-import { MessageService } from '../../services/message.service';
 import { Approval } from '../../models/approval';
 import { Reason } from '../../models/reason';
 import { ApprovalStatus } from '../../models/approval-status.enum';
@@ -16,7 +15,7 @@ import { InboxStatus } from '../../models/inbox-status.enum';
   templateUrl: './approval-list.component.html',
   styleUrls: ['./approval-list.component.css']
 })
-export class ApprovalListComponent implements OnInit, OnDestroy {
+export class ApprovalListComponent implements OnInit {
   title: 'Approval List';
   inboxs: Inbox[] = [];
   waits: Inbox[] = [];
@@ -32,8 +31,7 @@ export class ApprovalListComponent implements OnInit, OnDestroy {
   bsValue = new Date();
   bsRangeValue: Date[];
   maxDate = new Date();
-  message: any;
-  subscription: Subscription;
+
   columns = [
     { name: 'Reason', prop: 'reason.name', width: 200, minWidth: 150, maxWidth: 300, canAutoResize: true},
     { name: 'Status', prop: 'apprStatus[status]', width: 1000, minWidth: 600, maxWidth: 1200, canAutoResize: true}
@@ -41,7 +39,6 @@ export class ApprovalListComponent implements OnInit, OnDestroy {
   private readonly notifier: NotifierService;
   constructor(
     public router: Router,
-    public pesan: MessageService,
     private service: ApprovalService,
     private inbox: InboxService,
     notifierService: NotifierService) {
@@ -52,11 +49,7 @@ export class ApprovalListComponent implements OnInit, OnDestroy {
     this.loadRequests();
     this.maxDate.setDate(this.maxDate.getDate());
     this.bsRangeValue = [this.bsValue, this.maxDate];
-    this.subscription = this.pesan.getMessage()
-    .subscribe(message => {
-      this.message = message;
-      console.log(message);
-    });
+
     this.inbox.loadInboxs().subscribe(
       (res) => {
         this.inboxs = JSON.parse(JSON.stringify(res.data));
@@ -72,10 +65,6 @@ export class ApprovalListComponent implements OnInit, OnDestroy {
         console.log(err);
       }
     );
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   loadRequests() {

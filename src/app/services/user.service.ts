@@ -69,7 +69,7 @@ export class UserService {
       },
       (err) => console.log(err)
     );
-    //console.log(this.user);
+    // console.log(this.user);
     return this.user;
   }
 

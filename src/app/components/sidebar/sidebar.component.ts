@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SidebarService } from '../../services/sidebar.service';
 import { UserService } from '../../services/user.service';
+import { EventService } from '../../services/event.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,31 +17,32 @@ export class SidebarComponent implements OnInit {
   constructor(
     public router: Router,
     private service: UserService,
-    private sideBarService: SidebarService) { }
+    private events: EventService) { }
 
   ngOnInit() {
-    this.sideBarService.change.subscribe(isOpen => {
+    this.events.sidebarChange.subscribe(isOpen => {
       this.isOpen = isOpen;
     });
   }
 
   toggle() {
     if (this.isOpen) {
-      this.sideBarService.toggle();
+      this.events.sidebarToggle();
     }
   }
 
   onLogout(): void {
     this.service.remove();
     if (this.isOpen) {
-      this.sideBarService.toggle();
+      this.events.sidebarToggle();
     }
+    this.events.logedIn(false);
     this.router.navigateByUrl('/login');
   }
 
   onClickedOutside(e: Event) {
     if (this.isOpen) {
-      this.sideBarService.toggle();
+      this.events.sidebarToggle();
     }
   }
 

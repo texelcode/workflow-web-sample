@@ -1,9 +1,8 @@
 import { Component, OnInit, HostBinding, EventEmitter, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { SidebarService } from '../../services/sidebar.service';
 import { UserService } from '../../services/user.service';
-import { MessageService } from '../../services/message.service';
+import { EventService } from '../../services/event.service';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +12,7 @@ import { MessageService } from '../../services/message.service';
 export class HeaderComponent implements OnInit {
   @HostBinding('class.is-open')
   isOpen = false;
+  isLogedIn = false;
   message: any;
   title = '';
   attachOutsideOnClick = false;
@@ -20,18 +20,18 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public router: Router,
-    public pesan: MessageService,
     private service: UserService,
-    private sideBarService: SidebarService) { }
+    private events: EventService) { }
 
   ngOnInit() {
-    this.sideBarService.change.subscribe(isOpen => {
-      this.isOpen = isOpen;
+    this.events.userLogin.subscribe(logedIn => {
+      this.isLogedIn = logedIn;
     });
   }
 
   onLogout(): void {
     this.service.remove();
+    this.events.logedIn(false);
     this.router.navigateByUrl('/login');
   }
   onHome(): void {
@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
   }
 
   toggle(event: any) {
-    this.sideBarService.toggle();
+    this.events.sidebarToggle();
     event.stopPropagation();
   }
 

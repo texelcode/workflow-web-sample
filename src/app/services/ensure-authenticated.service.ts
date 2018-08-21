@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { UserService } from './user.service';
+import { EventService } from './event.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +9,16 @@ import { UserService } from './user.service';
 
 export class EnsureAuthenticatedService implements CanActivate {
 
-  constructor(private user: UserService, private router: Router) { }
+  isLogedIn = false;
+  constructor(
+    private router: Router,
+    private events: EventService) { }
 
   canActivate(): boolean {
-    if (localStorage.getItem('user_id')) {
+    this.events.userLogin.subscribe(logedIn => {
+      this.isLogedIn = logedIn;
+    });
+    if (this.isLogedIn) {
       return true;
     } else {
       this.router.navigateByUrl('/login');
