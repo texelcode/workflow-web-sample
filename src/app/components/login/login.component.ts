@@ -45,8 +45,9 @@ export class LoginComponent implements OnInit {
             // this.service.save(this.user);
             // localStorage.removeItem('user_id');
             localStorage.setItem('user_id', this.user.id.toString());
-            this.router.navigateByUrl('/home');
             this.events.logedIn(true);
+            this.router.navigateByUrl('/home');
+
           } else {
             this.notifier.notify( 'error', 'User not Authorized!' );
             console.log('User not Authorized');
