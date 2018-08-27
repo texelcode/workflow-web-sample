@@ -30,6 +30,7 @@
     "jquery": "^3.3.1",
     "moment": "^2.22.2",
     "ng-click-outside": "^4.0.0",
+    "ng2-slim-loading-bar": "^4.0.0",
     "ngx-bootstrap": "^3.0.1",
     "ngx-mydatepicker": "^2.4.8",
     "ngx-pagination": "^3.2.0",

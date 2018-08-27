@@ -10,6 +10,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { SubmittedApprovalComponent } from './components/submitted-approval/submitted-approval.component';
@@ -38,6 +39,8 @@ import { UserAddComponent } from './components/user-add/user-add.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ResponsiveModule } from 'ngx-responsive';
 import { EventService } from './services/event.service';
+import { IdleService } from './services/idle.service';
+import { InboxNotifierComponent } from './components/inbox-notifier/inbox-notifier.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -104,7 +107,8 @@ const config = {
     BsDropdownModule.forRoot(),
     ResponsiveModule.forRoot(config),
     NgxMyDatePickerModule.forRoot(),
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    SlimLoadingBarModule.forRoot()
   ],
   declarations: [
     AppComponent,
@@ -125,7 +129,8 @@ const config = {
     ApprovalListComponent,
     ApprovalAddComponent,
     UserAddComponent,
-    SidebarComponent
+    SidebarComponent,
+    InboxNotifierComponent
   ],
   providers: [
     EnsureAuthenticatedService,
@@ -134,7 +139,8 @@ const config = {
     ConnectionService,
     UserService,
     InboxService,
-    EventService],
+    EventService,
+    IdleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -42,33 +42,48 @@ export class LoginComponent implements OnInit {
           this.users = JSON.parse(JSON.stringify(res.data));
           this.user = this.users.find(x => x.email === this.email.toLowerCase());
           if (this.user) {
-            // this.service.save(this.user);
-            // localStorage.removeItem('user_id');
-            localStorage.setItem('user_id', this.user.id.toString());
-            this.events.logedIn(true);
-            this.router.navigateByUrl('/home');
-
+            this.authorized(true);
           } else {
-            this.notifier.notify( 'error', 'User not Authorized!' );
-            console.log('User not Authorized');
-            this.events.logedIn(false);
+            this.authorized(false);
           }
         },
         (err) => {
-          this.notifier.notify( 'error', 'Check your connection!' );
-          this.events.logedIn(false);
-          console.log(err);
+          this.errAuthorization(err);
         }
       );
 
     } else {
-      this.events.logedIn(false);
-      this.notifier.notify( 'error', 'Email can not be empty!' );
+      this.mandatory('Email');
     }
 
   }
 
-  onConnection(): void {
+  authorized(auth: boolean) {
+    this.events.logedIn(auth);
+    if (auth) {
+      localStorage.setItem('user_id', this.user.id.toString());
+      console.log('User Authorized');
+      this.router.navigateByUrl('/home');
+    } else {
+      this.notifier.notify( 'error', 'User not Authorized!' );
+      console.log('User not Authorized');
+    }
+
+  }
+
+  errAuthorization(err: any) {
+    this.events.logedIn(false);
+    this.notifier.notify( 'error', 'Check your connection!' );
+    console.log(err);
+  }
+
+  mandatory(field: any) {
+    this.events.logedIn(false);
+    this.notifier.notify( 'error', field + ' field can not be empty!' );
+    console.log(field + ' field can not be empty!');
+  }
+
+  onConnection() {
     this.router.navigateByUrl('/connection');
   }
 

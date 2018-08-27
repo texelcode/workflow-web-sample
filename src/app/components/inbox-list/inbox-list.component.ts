@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import { Inbox } from '../../models/inbox';
 import { InboxService } from '../../services/inbox.service';
 import { InboxStatus } from '../../models/inbox-status.enum';
@@ -10,7 +11,7 @@ import { InboxStatus } from '../../models/inbox-status.enum';
   templateUrl: './inbox-list.component.html',
   styleUrls: ['./inbox-list.component.css']
 })
-export class InboxListComponent implements OnInit {
+export class InboxListComponent implements OnInit, AfterViewInit {
   inboxs: Inbox[] = [];
   rows: Array<any> = [];
   selected: Inbox[] = [];
@@ -22,13 +23,25 @@ export class InboxListComponent implements OnInit {
   ];
   private readonly notifier: NotifierService;
   constructor(
+    private changeDetector: ChangeDetectorRef,
     public router: Router,
     private service: InboxService,
-    notifierService: NotifierService) {
+    notifierService: NotifierService,
+    private loading: SlimLoadingBarService) {
       this.notifier = notifierService;
     }
 
   ngOnInit() {
+    this.loading.start();
+    this.loadInboxs();
+  }
+
+  ngAfterViewInit() {
+    this.changeDetector.detectChanges();
+    this.loading.complete();
+  }
+
+  loadInboxs() {
     this.service.loadInboxs().subscribe(
       (res) => {
         this.inboxs = JSON.parse(JSON.stringify(res.data));

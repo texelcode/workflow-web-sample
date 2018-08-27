@@ -1,6 +1,5 @@
 import { Component, OnInit, HostBinding, EventEmitter, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { UserService } from '../../services/user.service';
 import { EventService } from '../../services/event.service';
 
@@ -21,12 +20,15 @@ export class HeaderComponent implements OnInit {
   constructor(
     public router: Router,
     private service: UserService,
-    private events: EventService) { }
+    private events: EventService) {
+
+    }
 
   ngOnInit() {
     this.events.userLogin.subscribe(logedIn => {
       this.isLogedIn = logedIn;
     });
+
   }
 
   onLogout(): void {

@@ -1,4 +1,3 @@
-<app-header></app-header>
 <div class="title">
     <table width="100%">
       <tr>
@@ -17,22 +16,22 @@
     <tr>
       <td width="20%"><label>ID</label></td>
       <td width="5%"><label>:</label></td>
-      <td width="75%"><label>{{user.id}}</label></td>
+      <td width="75%"><label>{{user?.id}}</label></td>
     </tr>
     <tr>
       <td><label>Name</label></td>
       <td><label>:</label></td>
-      <td><label>{{user.name}}</label></td>
+      <td><label>{{user?.name}}</label></td>
     </tr>
     <tr>
       <td><label>Email</label></td>
       <td><label>:</label></td>
-      <td><label>{{user.email}}</label></td>
+      <td><label>{{user?.email}}</label></td>
     </tr>
   </table>
 </div>
 <hr>
-    <div style="padding: 0px 10px;">
-      <button type="button" class="btn btn-primary square" style="width: 140px;" (click)="onBack()">Back</button>
-    </div>
-<app-footer></app-footer>
+<div style="padding: 0px 10px;">
+  <button type="button" class="btn btn-primary square" style="width: 140px;" (click)="onBack()">Back</button>
+</div>
+<app-inbox-notifier></app-inbox-notifier>

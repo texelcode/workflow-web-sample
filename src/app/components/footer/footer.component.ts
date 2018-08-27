@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EventService } from '../../services/event.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  isLogedIn = false;
+  constructor(private events: EventService) { }
 
   ngOnInit() {
+    this.events.userLogin.subscribe(logedIn => {
+      this.isLogedIn = logedIn;
+    });
   }
 
 }

@@ -1,22 +1,24 @@
 <div [style.display]="isLogedIn? 'inherit':'none'">
   <nav   class="navbar navbar-dark bg-dark fixed-top">
-  <button type="button" class="navbar-toggler square" style="padding: 2px;" (click)="toggle($event)">
-    <span class="navbar-toggler-icon" ></span>
-  </button>
-  <div style="padding: 0px 10px;">
-    <a class="navbar-brand" href="index.html" >Approval Sample Application</a>
-  </div>
-  <div *hideItBootstrap="['xs','sm']" class="navbar-expand mr-auto">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" [class.active]="router.url==='/home'" [routerLink]="['/home']">Home</a>
-      <a class="nav-item nav-link" [class.active]="router.url==='/inbox'" [routerLink]="['/inbox']">Inbox</a>
-      <a class="nav-item nav-link" [class.active]="router.url==='/approval'" [routerLink]="['/approval']">Request</a>
-      <a class="nav-item nav-link" [class.active]="router.url==='/user'" [routerLink]="['/user']">User</a>
+    <button type="button" class="navbar-toggler square" style="padding: 2px;" (click)="toggle($event)">
+      <span class="navbar-toggler-icon" ></span>
+    </button>
+    <div style="padding: 0px 10px;">
+      <a class="navbar-brand" href="index.html" >Approval Sample Application</a>
     </div>
-  </div>
-  <div *hideItBootstrap="['xs','sm']" class="navbar-expand ml-auto navbar-nav">
-    <button type="button" class="btn btn-warning btn-block one square" (click)="onLogout()"
-    style="width: 120px;margin-right:-5px;">Logout</button>
-  </div>
-</nav></div>
+    <div *hideItBootstrap="['xs','sm']" class="navbar-expand mr-auto">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" [class.active]="router.url==='/home'" [routerLink]="['/home']">Home</a>
+        <a class="nav-item nav-link" [class.active]="router.url==='/inbox'" [routerLink]="['/inbox']">Inbox</a>
+        <a class="nav-item nav-link" [class.active]="router.url==='/approval'" [routerLink]="['/approval']">Request</a>
+        <a class="nav-item nav-link" [class.active]="router.url==='/user'" [routerLink]="['/user']">User</a>
+      </div>
+    </div>
+    <div *hideItBootstrap="['xs','sm']" class="navbar-expand ml-auto navbar-nav">
+      <button type="button" class="btn btn-warning btn-block one square" (click)="onLogout()"
+      style="width: 120px;margin-right:-5px;">Logout</button>
+    </div>
+  </nav>
+  <ng2-slim-loading-bar color="blue" height="3px"></ng2-slim-loading-bar>
+</div>
 

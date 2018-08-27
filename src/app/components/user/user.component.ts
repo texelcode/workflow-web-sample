@@ -1,20 +1,17 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
-import { InboxService } from '../../services/inbox.service';
-import { Inbox } from '../../models/inbox';
-import { InboxStatus } from '../../models/inbox-status.enum';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit, OnDestroy {
-  inboxs: Inbox[] = [];
-  waits: Inbox[] = [];
+export class UserComponent implements OnInit, OnDestroy, AfterViewInit {
+
   user: User;
   users: User[] = [];
   id: number;
@@ -23,11 +20,12 @@ export class UserComponent implements OnInit, OnDestroy {
   private sub: any;
   private readonly notifier: NotifierService;
   constructor(
+    private changeDetector: ChangeDetectorRef,
     public router: Router,
     private route: ActivatedRoute,
     private service: UserService,
-    private inbox: InboxService,
-    notifierService: NotifierService) {
+    private notifierService: NotifierService,
+    private loading: SlimLoadingBarService) {
       this.notifier = notifierService;
     }
 
@@ -35,22 +33,13 @@ export class UserComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
+    this.loading.start();
     this.getUser(this.id);
-    this.inbox.loadInboxs().subscribe(
-      (res) => {
-        this.inboxs = JSON.parse(JSON.stringify(res.data));
-        this.waits = this.inboxs.filter(x => x.status === InboxStatus.waiting);
-        if (this.waits) {
-          if (this.waits.length > 0) {
-            this.notifier.notify( 'warning', 'You have waiting approval in your inbox!' );
-          }
-        }
-      },
-      (err) => {
-        this.notifier.notify( 'error', 'Inbox loading error!' );
-        console.log(err);
-      }
-    );
+  }
+
+  ngAfterViewInit() {
+    this.changeDetector.detectChanges();
+    this.loading.complete();
   }
 
   ngOnDestroy() {
