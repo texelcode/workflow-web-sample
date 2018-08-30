@@ -1,0 +1,31 @@
+<div class="title">
+    <table width="100%">
+      <tr>
+        <td width="80%" align="left">
+          <h3>Administration</h3>
+        </td>
+        <td width="20%" align="right">
+
+        </td>
+      </tr>
+    </table>
+  </div>
+  <hr>
+<div style="margin-top:5px;padding: 5px 0px 0px 0px;">
+  <tabset>
+    <tab *ngFor="let tab of tabs"
+      [heading]="tab.title"
+      [active]="tab.active"
+      (select)="tab.active = true"
+      (deselect)="tab.active = false"
+      [customClass]="tab.customClass">
+      <div [ngSwitch]="tab?.content">
+        <app-user-list *ngSwitchCase="'user'"></app-user-list>
+        <app-user-list *ngSwitchCase="'user group'"></app-user-list>
+        <app-approval-list *ngSwitchCase="'job'"></app-approval-list>
+        <app-approval-list *ngSwitchCase="'job group'"></app-approval-list>
+        <app-inbox-list *ngSwitchCase="'organization'"></app-inbox-list>
+      </div>
+    </tab>
+  </tabset>
+</div>

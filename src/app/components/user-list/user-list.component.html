@@ -1,8 +1,8 @@
-<div class="title">
+<div class="subtitle">
     <table style="min-width: 100%;">
      <tr style="min-width: 100%;">
         <td align="left" style="min-width: 70%;">
-          <h3>User List</h3>
+        &nbsp;
         </td>
         <td align="right" style="min-width: 20%;">
             <button type="button" class="btn btn-primary square" (click)="addItem()">
@@ -11,16 +11,16 @@
         </td>
       </tr>
     </table>
+    <hr>
 </div>
-<hr>
-<div style="margin:0px;padding: 0px 10px;">
+<div style="margin-top:-10px;padding: 0px 10px;">
     <ngx-datatable
     class="bootstrap"
     [rows]="rows"
     [columns]="columns"
     [columnMode]="'standard'"
     [headerHeight]="40"
-    [footerHeight]="40"
+    [footerHeight]="35"
     [limit]="10"
     [rowHeight]="40"
     [selected]="selected"

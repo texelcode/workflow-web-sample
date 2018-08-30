@@ -15,6 +15,7 @@ import { ApprovalAddComponent } from './components/approval-add/approval-add.com
 import { UserAddComponent } from './components/user-add/user-add.component';
 import { ApprovalComponent } from './components/approval/approval.component';
 import { UserComponent } from './components/user/user.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const appRoutes: Routes = [
   {
@@ -99,6 +100,12 @@ const appRoutes: Routes = [
   {
     path: 'add-approval',
     component: ApprovalAddComponent,
+    canActivate:
+    [EnsureAuthenticatedService]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
     canActivate:
     [EnsureAuthenticatedService]
   }

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
+import { CollapseModule, TabsModule } from 'ngx-bootstrap';
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -41,6 +41,7 @@ import { ResponsiveModule } from 'ngx-responsive';
 import { EventService } from './services/event.service';
 import { IdleService } from './services/idle.service';
 import { InboxNotifierComponent } from './components/inbox-notifier/inbox-notifier.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -104,7 +105,7 @@ const config = {
     NgxDatatableModule,
     ClickOutsideModule,
     NotifierModule.withConfig(customNotifierOptions),
-    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
     ResponsiveModule.forRoot(config),
     NgxMyDatePickerModule.forRoot(),
     CollapseModule.forRoot(),
@@ -130,7 +131,8 @@ const config = {
     ApprovalAddComponent,
     UserAddComponent,
     SidebarComponent,
-    InboxNotifierComponent
+    InboxNotifierComponent,
+    AdminComponent
   ],
   providers: [
     EnsureAuthenticatedService,
